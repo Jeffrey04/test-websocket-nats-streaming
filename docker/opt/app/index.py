@@ -90,8 +90,8 @@ async def websocket_handler(request):
             else:
                 await pub.publish(msg.data.encode('utf-8'))
         elif msg.type == aiohttp.WSMsgType.ERROR:
-            print('ws connection closed with exception %s' %
-                  ws.exception())
+            logger.info('ws connection closed with exception %s' %
+                        ws.exception())
 
     logger.info('websocket connection closed')
     await signal_handler(sc_sub, sub)
