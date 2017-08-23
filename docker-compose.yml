@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+    nats:
+        image: 'nats:latest'
+        tty: true
+
+    streaming:
+        image: 'nats-streaming'
+        environment:
+            ns: 'nats://nats:4222'
+        tty: true
+
+    app:
+        build: './docker'
+        ports:
+            - '1580:8080'
+        tty: true
